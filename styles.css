@@ -109,7 +109,9 @@ h1 span { color: #bd8250; }
 .message-list:empty { display: none; }
 .message { display: flex; gap: 11px; align-items: flex-start; animation: message-in .24s ease both; }
 .message.user { justify-content: flex-end; }
-.message-avatar { flex: 0 0 29px; width: 29px; height: 29px; border-radius: 10px; display: grid; place-items: center; background: #39251a; color: #e6bd8e; font: 800 15px/1 "Manrope",sans-serif; }
+.message-avatar { position: relative; flex: 0 0 48px; width: 48px; height: 52px; margin-top: 1px; background-image: url("./public/assets/horizon-look-directions.webp"); background-repeat: no-repeat; background-size: 192px 208px; }
+.message-wave { position: absolute; left: 50%; top: 50%; width: 40px; height: 8px; overflow: visible; transform: translate(-50%,-50%); pointer-events: none; }
+.message-wave path { fill: none; stroke: #160e0a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .message-body { max-width: min(84%,590px); color: #4c3e33; font-size: 13px; line-height: 1.65; }
 .message-body p { margin: 2px 0 0; white-space: pre-wrap; }
 .message-role { color: #9b8876; font-size: 9px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }

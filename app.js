@@ -27,6 +27,9 @@
     const col = direction % 4;
     const row = Math.floor(direction / 4);
     frame.style.backgroundPosition = `${-col * frameSize.width}px ${-row * frameSize.height}px`;
+    document.querySelectorAll(".message-avatar").forEach((avatar) => {
+      avatar.style.backgroundPosition = `${-col * 48}px ${-row * 52}px`;
+    });
     frame.setAttribute("aria-label", `Coruja Horizon olhando na direção ${direction + 1} de 16`);
   }
 
@@ -115,8 +118,10 @@
     if (role === "assistant") {
       const avatar = document.createElement("span");
       avatar.className = "message-avatar";
-      avatar.setAttribute("aria-hidden", "true");
-      avatar.textContent = "h";
+      avatar.setAttribute("role", "img");
+      avatar.setAttribute("aria-label", "Mascote Horizon");
+      avatar.style.backgroundPosition = `${-(direction % 4) * 48}px ${-Math.floor(direction / 4) * 52}px`;
+      avatar.innerHTML = '<svg class="message-wave" viewBox="0 0 120 24" aria-hidden="true"><path d="M 4 12 H 116" /></svg>';
       article.append(avatar);
     }
     const body = document.createElement("div");
