@@ -46,23 +46,34 @@
   document.addEventListener("pointerleave", () => showDirection(0));
 
   function drawWave(level, time) {
+    let pathData;
     if (level < 0.025) {
-      wavePath.setAttribute("d", "M 4 12 H 116");
-      return;
+      pathData = "M 4 12 H 116";
+    } else {
+      const points = [];
+      const count = 48;
+      const amplitude = Math.min(6.4, 0.7 + level * 7);
+      for (let i = 0; i <= count; i += 1) {
+        const x = 4 + (112 * i / count);
+        const envelope = Math.sin(Math.PI * i / count) ** 0.55;
+        const texture = Math.sin(i * 0.88 + time * 0.0048) * 0.56
+          + Math.sin(i * 0.39 - time * 0.0061) * 0.29
+          + Math.sin(i * 1.27 + time * 0.0032) * 0.15;
+        const y = Math.max(3, Math.min(21, 12 + texture * amplitude * envelope));
+        points.push({ x, y });
+      }
+      pathData = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
+      for (let i = 1; i < points.length - 1; i += 1) {
+        const midpointX = (points[i].x + points[i + 1].x) / 2;
+        const midpointY = (points[i].y + points[i + 1].y) / 2;
+        pathData += ` Q ${points[i].x.toFixed(1)} ${points[i].y.toFixed(1)} ${midpointX.toFixed(1)} ${midpointY.toFixed(1)}`;
+      }
+      const last = points[points.length - 1];
+      pathData += ` L ${last.x.toFixed(1)} ${last.y.toFixed(1)}`;
     }
-    const points = [];
-    const count = 28;
-    const amplitude = Math.min(8, 1.2 + level * 12);
-    for (let i = 0; i <= count; i += 1) {
-      const x = 4 + (112 * i / count);
-      const envelope = Math.sin(Math.PI * i / count) ** 0.45;
-      const texture = Math.sin(i * 1.63 + time * 0.008) * 0.58
-        + Math.sin(i * 0.71 - time * 0.012) * 0.34
-        + Math.sin(i * 2.4 + time * 0.004) * 0.18;
-      const y = Math.max(2, Math.min(22, 12 + texture * amplitude * envelope));
-      points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`);
-    }
-    wavePath.setAttribute("d", points.join(" "));
+    [wavePath, ...document.querySelectorAll(".message-wave path")].forEach((path) => {
+      path.setAttribute("d", pathData);
+    });
   }
 
   function tickWave(now) {
@@ -74,7 +85,8 @@
       } else {
         const pulse = 0.5 + 0.5 * Math.sin(now / 190);
         const syllable = 0.5 + 0.5 * Math.sin(now / 71 + 0.8);
-        audioLevel = Math.max(audioLevel * 0.88, 0.08 + pulse * syllable * 0.7);
+        const targetLevel = 0.04 + pulse * syllable * 0.48;
+        audioLevel += (targetLevel - audioLevel) * (targetLevel > audioLevel ? 0.22 : 0.1);
       }
     } else {
       audioLevel *= 0.82;

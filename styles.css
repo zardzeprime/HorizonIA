@@ -39,9 +39,8 @@ button { color: inherit; }
 .companion-glow { position: absolute; inset: 50px 35px 63px; border-radius: 50%; background: radial-gradient(ellipse, rgba(204,141,79,.22), transparent 68%); filter: blur(8px); }
 .avatar-stage { position: relative; width: var(--frame-w); height: var(--frame-h); z-index: 1; margin: 3px auto 0; transform: translateZ(0); transition: filter .25s ease; filter: drop-shadow(0 9px 11px rgba(0,0,0,.16)); }
 .avatar-sprite { position: absolute; inset: 0; width: var(--frame-w); height: var(--frame-h); background-image: url("./public/assets/horizon-look-directions.webp"); background-repeat: no-repeat; background-size: calc(var(--frame-w) * 4) calc(var(--frame-h) * 4); background-position: 0 0; transition: background-position .12s steps(1,end); }
-.voice-wave { position: absolute; z-index: 2; width: 110px; height: 22px; left: 50%; top: 50%; overflow: visible; transform: translate(-50%,-50%); filter: drop-shadow(0 1px 0 rgba(255,255,255,.14)); pointer-events: none; }
-.voice-wave path { fill: none; stroke: #160e0a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-.avatar-stage.is-speaking .voice-wave path { stroke-width: 2.2; }
+.voice-wave { position: absolute; z-index: 2; width: 110px; height: 22px; left: 50%; top: 50%; overflow: visible; transform: translate(-50%,-50%); pointer-events: none; }
+.voice-wave path { fill: none; stroke: #160e0a; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .companion-caption { z-index: 2; position: relative; margin-top: 2px; display: flex; align-items: center; gap: 7px; color: #ead7c4; font-size: 11px; letter-spacing: .15px; }
 .presence-dot { width: 6px; height: 6px; border-radius: 50%; background: #a8bc87; box-shadow: 0 0 9px rgba(168,188,135,.55); }
 .companion-note { z-index: 2; position: relative; margin: 7px 0 0; color: #9e8c7e; font-size: 10px; }
@@ -110,8 +109,8 @@ h1 span { color: #bd8250; }
 .message { display: flex; gap: 11px; align-items: flex-start; animation: message-in .24s ease both; }
 .message.user { justify-content: flex-end; }
 .message-avatar { position: relative; flex: 0 0 48px; width: 48px; height: 52px; margin-top: 1px; background-image: url("./public/assets/horizon-look-directions.webp"); background-repeat: no-repeat; background-size: 192px 208px; }
-.message-wave { position: absolute; left: 50%; top: 50%; width: 40px; height: 8px; overflow: visible; transform: translate(-50%,-50%); pointer-events: none; }
-.message-wave path { fill: none; stroke: #160e0a; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.message-wave { position: absolute; left: 50%; top: 50%; width: 44px; height: 14px; overflow: visible; transform: translate(-50%,-50%); pointer-events: none; }
+.message-wave path { fill: none; stroke: #160e0a; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
 .message-body { max-width: min(84%,590px); color: #4c3e33; font-size: 13px; line-height: 1.65; }
 .message-body p { margin: 2px 0 0; white-space: pre-wrap; }
 .message-role { color: #9b8876; font-size: 9px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
