@@ -26,9 +26,15 @@
     direction = ((index % 16) + 16) % 16;
     const col = direction % 4;
     const row = Math.floor(direction / 4);
+    const angle = direction * Math.PI / 8;
+    const pitch = Math.cos(angle) * 9;
+    const yaw = Math.sin(angle) * -7;
+    const tilt = `perspective(700px) rotateX(${pitch.toFixed(1)}deg) rotateY(${yaw.toFixed(1)}deg)`;
     frame.style.backgroundPosition = `${-col * frameSize.width}px ${-row * frameSize.height}px`;
+    stage.style.transform = tilt;
     document.querySelectorAll(".message-avatar").forEach((avatar) => {
       avatar.style.backgroundPosition = `${-col * 48}px ${-row * 52}px`;
+      avatar.style.transform = tilt;
     });
     frame.setAttribute("aria-label", `Coruja Horizon olhando na direção ${direction + 1} de 16`);
   }
