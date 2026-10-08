@@ -15,7 +15,8 @@ Abra a porta `4173` na lista de portas do Codespace.
 ## O que já funciona
 
 - Layout responsivo com navegação à esquerda e conversa no painel principal.
-- Horizon acompanha o cursor com 16 direções de olhar.
+- Horizon acompanha o cursor com inclinação contínua e suavizada, inclusive para cima e para baixo.
+- A animação atual inclina a imagem frontal; um rig próprio do Rive depende de arte separada em partes e do arquivo `.riv` do projeto.
 - A linha central fica reta em repouso e se anima durante uma resposta demonstrativa.
 - `window.HorizonMascot.setSpeaking(true)` e `setAudioLevel(0..1)` permitem ligar o movimento ao áudio real quando o serviço de voz estiver configurado.
 - Caixa de mensagem, sugestões e criação de conversa funcionam como prévia local.
@@ -31,4 +32,4 @@ O endpoint de voz pode enviar níveis de áudio para `window.HorizonMascot.setAu
 - `index.html` — interface sem framework.
 - `styles.css` — aparência desktop e mobile.
 - `app.js` — conversa demonstrativa, direção do mascote e onda reativa.
-- `public/assets/horizon-look-directions.webp` — 16 poses do Horizon, sem a onda embutida.
+- `public/assets/horizon-owl.webp` — pose frontal limpa do Horizon, com fundo transparente.
