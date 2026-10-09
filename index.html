@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#261811" />
+    <meta name="description" content="Horizon — um espaço para pensar, criar e organizar ideias." />
+    <title>Horizon AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="#" aria-label="Horizon, início">
+          <span class="brand-mark" aria-hidden="true">h</span>
+          <span class="brand-name">horizon<span>AI</span></span>
+        </a>
+
+        <section class="companion-card" aria-label="Mascote Horizon">
+          <div class="companion-glow" aria-hidden="true"></div>
+          <div class="avatar-stage" id="avatarStage" aria-label="Horizon acompanha o cursor">
+            <div class="avatar-sprite" id="avatarSprite" role="img" aria-label="Coruja Horizon olhando para cima"></div>
+            <svg class="voice-wave" id="voiceWave" viewBox="0 0 120 24" aria-hidden="true">
+              <path id="wavePath" d="M 4 12 H 116" />
+            </svg>
+          </div>
+          <div class="companion-caption">
+            <span class="presence-dot" aria-hidden="true"></span>
+            <span id="companionStatus">por aqui com você</span>
+          </div>
+          <p class="companion-note">Passe o cursor pela conversa.</p>
+        </section>
+
+        <button class="new-chat" id="newChat" type="button">
+          <span class="plus-icon" aria-hidden="true">+</span>
+          <span>Nova conversa</span>
+          <span class="shortcut">⌘ K</span>
+        </button>
+
+        <nav class="side-nav" aria-label="Conversas">
+          <p class="nav-heading">SEU ESPAÇO</p>
+          <a class="nav-link active" href="#" aria-current="page">
+            <span class="nav-icon chat-icon" aria-hidden="true"></span>
+            <span>Conversas</span>
+          </a>
+          <a class="nav-link" href="#" data-inert-link>
+            <span class="nav-icon spark-icon" aria-hidden="true">✳</span>
+            <span>Explorar ideias</span>
+          </a>
+        </nav>
+
+        <section class="recent-list" aria-label="Recentes">
+          <p class="nav-heading">RECENTES</p>
+          <button class="recent-item selected" type="button" data-chat-title="Uma ideia nova">
+            <span class="recent-dot"></span><span>Uma ideia nova</span>
+          </button>
+          <button class="recent-item" type="button" data-chat-title="Planejar a semana">
+            <span class="recent-dot"></span><span>Planejar a semana</span>
+          </button>
+          <button class="recent-item" type="button" data-chat-title="Rascunho de projeto">
+            <span class="recent-dot"></span><span>Rascunho de projeto</span>
+          </button>
+        </section>
+
+        <div class="sidebar-bottom">
+          <div class="profile-avatar">E</div>
+          <div class="profile-copy"><strong>Seu espaço</strong><span>Plano pessoal</span></div>
+          <button class="more-button" type="button" aria-label="Mais opções">···</button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir navegação"><span></span><span></span></button>
+          <div class="breadcrumb"><span>Horizon</span><span class="breadcrumb-sep">/</span><strong id="topTitle">Uma ideia nova</strong></div>
+          <div class="topbar-actions">
+            <span class="demo-badge"><span></span> prévia local</span>
+            <button class="icon-button" type="button" aria-label="Compartilhar conversa" data-toast="O compartilhamento entra na próxima etapa.">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 13V3m0 0L6.5 6.5M10 3l3.5 3.5M4 10.5v5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-5" /></svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="conversation" id="conversation" aria-live="polite" aria-label="Conversa com Horizon">
+          <div class="welcome-block" id="welcomeBlock">
+            <div class="welcome-eyebrow"><span class="eyebrow-line"></span> UM ESPAÇO PARA IDEIAS <span class="eyebrow-line"></span></div>
+            <h1>O que está passando<br />pela sua cabeça<span>?</span></h1>
+            <p>Uma conversa pode começar de qualquer lugar.<br class="desktop-break" /> Me conta no que você está pensando.</p>
+            <div class="suggestion-grid">
+              <button class="suggestion-card" type="button" data-prompt="Me ajuda a organizar uma ideia que ainda está meio solta.">
+                <span class="suggestion-icon idea-icon">✳</span><span><strong>Destravar uma ideia</strong><small>Tenho algo na cabeça, mas ainda sem forma</small></span><span class="card-arrow">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-prompt="Me ajuda a transformar meu objetivo em um plano simples para esta semana.">
+                <span class="suggestion-icon plan-icon">↗</span><span><strong>Planejar meu próximo passo</strong><small>Um plano leve para sair do lugar</small></span><span class="card-arrow">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-prompt="Quero escrever uma mensagem clara e natural. Pode me ajudar?">
+                <span class="suggestion-icon write-icon">Aa</span><span><strong>Escrever com clareza</strong><small>Colocar a mensagem do jeito certo</small></span><span class="card-arrow">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-prompt="Quero pensar em voz alta. Faz perguntas para me ajudar a clarear as ideias.">
+                <span class="suggestion-icon think-icon">◎</span><span><strong>Pensar em voz alta</strong><small>Conversar até as coisas se encaixarem</small></span><span class="card-arrow">↗</span>
+              </button>
+            </div>
+          </div>
+          <div class="message-list" id="messageList"></div>
+          <div class="typing-indicator" id="typingIndicator" aria-live="polite"><span></span><span></span><span></span><em>Horizon está pensando</em></div>
+        </section>
+
+        <footer class="composer-area">
+          <form class="composer" id="composer">
+            <textarea id="messageInput" rows="1" placeholder="Escreva para o Horizon..." aria-label="Mensagem para Horizon"></textarea>
+            <div class="composer-tools">
+              <div class="composer-hint"><span class="hint-dot"></span> Sua conversa começa no seu espaço</div>
+              <div class="composer-buttons">
+                <button class="attach-button" type="button" aria-label="Anexos" data-toast="Anexos entram na próxima etapa."><span>＋</span></button>
+                <button class="send-button" id="sendButton" type="submit" aria-label="Enviar mensagem"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4m0 0L5.5 8.5M10 4l4.5 4.5" /></svg></button>
+              </div>
+            </div>
+          </form>
+          <p class="composer-disclaimer">Esta prévia ainda não está conectada a um modelo de IA.</p>
+        </footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
