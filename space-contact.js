@@ -73,7 +73,15 @@
   const tabs = Array.from(document.querySelectorAll('[data-channel]'));
   const closeButton = document.querySelector('.contact-close');
   let originalFocus, originalOverflow, inertStates = [], flightTimer, flight, pendingChannel;
+  const emailAvailable = Boolean(config.email);
+  const emailTab = tabs.find(tab => tab.dataset.channel === 'email');
+  emailTab.disabled = !emailAvailable;
+  emailTab.setAttribute('aria-disabled', String(!emailAvailable));
+  const emailLauncher = document.querySelector('.email-launch');
+  emailLauncher.disabled = !emailAvailable;
+  if (emailAvailable) { emailTab.firstChild.textContent = 'E-mail '; emailLauncher.firstChild.textContent = 'Explorar contato por e-mail '; }
   function selectChannel(channel, focus = false) {
+    if (channel === 'email' && !emailAvailable) channel = 'whatsapp';
     tabs.forEach(tab => { const active = tab.dataset.channel === channel; tab.setAttribute('aria-selected', String(active)); tab.tabIndex = active ? 0 : -1; document.querySelector(`#contact-panel-${tab.dataset.channel}`).hidden = !active; if (active && focus) tab.focus(); });
   }
   function open(channel) {
@@ -129,9 +137,9 @@
   }
   document.querySelectorAll('a[href="#contato"], [data-contact-tab]').forEach(trigger => {
     trigger.setAttribute('aria-haspopup', 'dialog');
-    trigger.addEventListener('click', event => { event.preventDefault(); launch(trigger.dataset.contactTab || 'whatsapp', trigger); });
+    trigger.addEventListener('click', event => { event.preventDefault(); if (!trigger.disabled) launch(trigger.dataset.contactTab || 'whatsapp', trigger); });
   });
-  tabs.forEach((tab, index) => { tab.addEventListener('click', () => selectChannel(tab.dataset.channel)); tab.addEventListener('keydown', event => { let target; if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') target = 1 - index; if (event.key === 'Home') target = 0; if (event.key === 'End') target = tabs.length - 1; if (target !== undefined) { event.preventDefault(); selectChannel(tabs[target].dataset.channel, true); } }); });
+  tabs.forEach((tab, index) => { tab.addEventListener('click', () => selectChannel(tab.dataset.channel)); tab.addEventListener('keydown', event => { let target; if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') target = 1 - index; if (event.key === 'Home') target = 0; if (event.key === 'End') target = tabs.length - 1; if (target !== undefined) { event.preventDefault(); if (!tabs[target].disabled) selectChannel(tabs[target].dataset.channel, true); } }); });
   closeButton.addEventListener('click', close);
   overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
   document.querySelector('.email-to-whatsapp').addEventListener('click', () => {

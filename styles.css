@@ -121,3 +121,43 @@ body:has(.era-onboarding) .hero-art *,body:has(.era-onboarding) .ticker>div,body
 @keyframes rocket-flash{0%,60%{opacity:0}88%{opacity:1}100%{opacity:0}}@keyframes contact-arrive{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}@keyframes rocket-idle{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-9px) rotate(-5deg)}}
 @media(max-width:760px){.contact-launch-card{padding:28px}.contact-launch-card h3{font-size:25px}.contact-overlay{padding:16px 12px;backdrop-filter:none}.contact-modal{grid-template-columns:1fr}.contact-modal-art{display:none}.contact-modal-body{padding:35px 23px 20px}.contact-modal-body>h2{font-size:28px}.contact-close{width:40px;height:40px;top:9px;right:9px}.contact-modal-body>.eyebrow{max-width:calc(100% - 30px);font-size:7px;letter-spacing:1.4px}.contact-tabs{margin:22px 0}.contact-tabs button{font-size:11px}.email-form input,.email-form textarea{font-size:16px}.contact-flight img{filter:none}.contact-modal .brief-form input,.contact-modal .brief-form select,.contact-modal .brief-form textarea{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.contact-flight{display:none}.contact-modal,.contact-modal-art>img{animation:none!important}}
+
+/* Lighter original arrows, orbital emblem and a hand-dealt service deck. */
+.orbit-arrow{width:18px;height:18px;display:inline-block;vertical-align:middle;flex-shrink:0;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.arrow-orbit{opacity:.45}
+a:hover .orbit-arrow,button:hover .orbit-arrow{transform:translate(2px,-2px)}
+.service-arrow .orbit-arrow{width:22px;height:22px}
+.mini-intelligence{height:105px;perspective:300px}
+.mini-intelligence span{width:88px;height:88px;border-color:#c8a37475;box-shadow:0 0 14px #c8a37412}
+.mini-intelligence span+span{width:103px;height:103px;border-color:#efd6ad40}
+.mini-intelligence i{font:30px Georgia;color:#efd6ad;text-shadow:0 0 22px #c8a37480}
+.js .services .service.reveal{transform:translateY(52px) rotate(-5deg) scale(.95);transform-origin:50% 100%;transition:opacity .8s,transform 1s cubic-bezier(.2,.8,.2,1);transition-delay:0s}
+.js .services .service.reveal:nth-child(2){transform:translateY(60px) rotate(4deg) scale(.95);transition-delay:.12s}
+.js .services .service.reveal:nth-child(3){transform:translateY(68px) rotate(-3deg) scale(.95);transition-delay:.24s}
+.js .services .service.reveal.visible{opacity:1;transform:none}
+.js .services .service.reveal.visible:hover{transform:translateY(-5px)}
+.deck-controls{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:12px;color:var(--gold);font-size:10px;letter-spacing:.1em}
+.deck-controls[hidden]{display:none}
+.deck-controls>div{display:flex;align-items:center;gap:15px}
+.deck-controls button{width:42px;height:42px;border:1px solid #c8a37445;border-radius:50%;background:#111216;color:#efd6ad;font-size:26px;cursor:pointer}
+.deck-controls button:disabled{opacity:.3;cursor:default}
+.deck-position{min-width:55px;text-align:center}
+.email-launch:disabled,.contact-tabs button:disabled{opacity:.45;cursor:default}
+@media(max-width:1000px){.services{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:2px;gap:18px;padding:12px 2px 20px;scrollbar-width:thin;scrollbar-color:#c8a37445 transparent}.services .service{flex:0 0 calc(50% - 20px);scroll-snap-align:start;min-width:0}.services .service:last-child{scroll-snap-align:end}}
+@media(max-width:600px){.services .service{flex-basis:88%;padding:28px 24px}.deck-controls{font-size:9px}.mini-intelligence{height:110px}}
+.cosmic-patrol{position:fixed;inset:0;z-index:180;display:grid;place-items:center;padding:20px;background:rgba(4,6,12,.96);overflow:auto;animation:patrol-darken .5s both}
+.cosmic-patrol[hidden]{display:none}
+.patrol-dialog{width:min(100%,600px);position:relative;text-align:center;padding:30px 20px;outline:none}
+.patrol-beacon{width:65px;margin:0 auto;filter:drop-shadow(0 0 25px #df5252);animation:patrol-siren .7s alternate infinite}
+.patrol-beacon svg{display:block;width:100%}
+.patrol-car{display:block;width:230px;max-width:70%;margin:12px auto;animation:patrol-arrive 1.4s cubic-bezier(.16,.85,.22,1) both}
+.patrol-officer{display:block;height:140px;margin:0 auto;animation:patrol-appear .7s 1.1s both}
+.patrol-message{animation:patrol-appear .7s 1.5s both}
+.patrol-message h2{font-size:clamp(26px,5vw,40px);margin:12px 0;line-height:1.2}
+.patrol-message>p:not(.eyebrow){font-size:14px;color:#aaa;margin-bottom:22px}
+.patrol-close{margin:0 auto}
+@keyframes patrol-darken{from{opacity:0}to{opacity:1}}
+@keyframes patrol-siren{from{filter:drop-shadow(-25px 0 24px #df5252)}to{filter:drop-shadow(25px 0 24px #568be8)}}
+@keyframes patrol-arrive{from{transform:translateX(-100vw) rotate(-3deg)}to{transform:translateX(0) rotate(0)}}
+@keyframes patrol-appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.js .services .service.reveal,.js .services .service.reveal:nth-child(n){transform:none;transition:none}.cosmic-patrol,.cosmic-patrol *{animation:none!important}.orbit-arrow{transition:none}}

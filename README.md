@@ -28,7 +28,7 @@ A foto do criador usa PNG transparente com moldura e iluminação animadas em CS
 
 `space-contact.js` desenha SVGs próprios de planetas no Canvas com movimento contínuo e colisão nas bordas. São 5 planetas no mobile e 8 no desktop, com renderização limitada a cerca de 30 fps, suspensão na abertura, no contato e em abas ocultas. O foguete original HorizonI avança em direção à tela antes de abrir uma janela de contato acessível, com abas WhatsApp e E-mail.
 
-`contact-config.js` contém os destinos públicos. O proprietário escolheu configurar o e-mail depois: a aba prepara/copia mensagens e oferece a continuação pelo WhatsApp; não finge enviar e-mails. Ao definir `email`, a aba fornece um link `mailto:` com mensagem pronta para o cliente revisar no aplicativo de e-mail. Não há servidor de envio ou coleta de dados.
+`contact-config.js` contém os destinos públicos. O proprietário escolheu configurar o e-mail depois: a aba fica desabilitada e sinalizada como “em breve”. Ao definir `email`, a aba fornece um link `mailto:` com mensagem pronta para o cliente revisar no aplicativo de e-mail. Não há servidor de envio ou coleta de dados.
 
 ## Contato
 
@@ -37,3 +37,9 @@ Contato comercial: WhatsApp `(75) 98298-0702`, link internacional `https://wa.me
 ## Publicação
 
 Importe este repositório no Vercel com Framework Preset “Other”, sem build e servindo a raiz. `vercel.json` contém apenas configuração estática e cabeçalhos. O código não depende de um editor visual. As fontes do Google têm fallback local.
+
+## Movimento e easter egg
+
+Cards entram como cartas distribuídas, com carrossel manual em telas até 1000 px. Controles respondem ao scroll, teclado e redimensionamento. SVGs de setas são originais; o H orbital foi ampliado. Respeitamos prefers-reduced-motion.
+
+Os atalhos F12 e Ctrl/Cmd+Shift+I/J/C podem abrir uma cena humorística com sirene, viatura e policial. É um easter egg dispensável, não uma defesa: não bloqueia os atalhos, não detecta DevTools por outros caminhos, não criptografa nem impede a cópia dos arquivos públicos. Sem telemetria ou inferências por tamanho de janela.
