@@ -9,10 +9,16 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 ## Recursos
 
 - Layout responsivo, menu mobile, navegação por âncoras e foco visível.
-- Horizonte procedural em Canvas 2D com partículas orbitais, trilhas luminosas, reflexos em movimento e paralaxe sutil. Animações CSS nos ícones, gráficos e órbitas. Controle para pausar, suporte a movimento reduzido e renderização interrompida fora de tela ou em aba oculta.
+- Horizonte procedural em Canvas 2D com partículas orbitais, trilhas luminosas, reflexos em movimento e paralaxe sutil. Animações CSS nos ícones, gráficos e órbitas. Animação contínua, suporte à preferência do sistema por movimento reduzido e renderização interrompida fora de tela ou em aba oculta.
 - Laboratório interativo com três demonstrações conceituais, sem chamadas a modelos de IA.
 - Perguntas frequentes e briefing local com opção de copiar.
 - Publicação pelo GitHub no Vercel, sem créditos de geração de plataformas.
+
+## Proposta
+
+Criada por Esdras Oliveira e Oliveira Junior, a HorizonI transforma o acesso à IA em execução com estratégia, contexto, instruções claras, testes e revisão humana. Cria sites por código, corrige problemas em sites e WordPress, desenvolve criação digital e avalia plataformas web conforme escopo e viabilidade. Aplicativos mobile não integram a oferta definida.
+
+A foto do criador usa PNG transparente com moldura e iluminação animadas em CSS.
 
 ## Contato
 

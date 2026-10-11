@@ -42,10 +42,6 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
   const context = canvas.getContext('2d');
   if (!context) return;
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const toggle = document.createElement('button');
-  toggle.className = 'motion-toggle';
-  toggle.type = 'button';
-  document.querySelector('.hero-bottom').append(toggle);
   let paused = motionPreference.matches;
   let visible = true;
   let frame = 0;
@@ -56,11 +52,6 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
   let particles = [];
   let pointer = { x: 0, y: 0 };
   let drift = { x: 0, y: 0 };
-  function labelToggle() {
-    toggle.textContent = paused ? '▷ Animar horizonte' : 'Ⅱ Pausar animações';
-    toggle.setAttribute('aria-label', paused ? 'Ativar animações da página' : 'Pausar animações da página');
-    document.body.classList.toggle('motion-paused', paused);
-  }
   function resize() {
     const bounds = hero.getBoundingClientRect();
     width = bounds.width;
@@ -69,11 +60,11 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    particles = Array.from({ length: width < 760 ? 95 : 190 }, () => ({
+    particles = Array.from({ length: width < 760 ? 140 : 260 }, () => ({
       angle: Math.random() * Math.PI * 2,
       radius: .35 + Math.random() * .75,
       size: .4 + Math.random() * 1.1,
-      speed: .08 + Math.random() * .15,
+      speed: .12 + Math.random() * .22,
       brightness: .2 + Math.random() * .6,
       lane: Math.random() > .65 ? 'sky' : 'disk'
     }));
@@ -99,7 +90,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
       const squash = sky ? .72 : .13;
       const x = centerX + Math.cos(angle) * r;
       const y = centerY + Math.sin(angle) * r * squash;
-      const alpha = particle.brightness * (sky ? .42 : .85);
+      const alpha = particle.brightness * (sky ? .60 : .95);
       if (!sky) {
         context.beginPath();
         context.ellipse(centerX, centerY, r, r * squash, 0, angle - .06, angle);
@@ -114,7 +105,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     });
     // Traveling highlights over the semicircles.
     [1, 1.46].forEach((scale, index) => {
-      const angle = Math.PI + ((phase * .16 + index * 2) % Math.PI);
+      const angle = Math.PI + ((phase * .21 + index * 2) % Math.PI);
       context.beginPath();
       context.arc(centerX, centerY, radius * .8 * scale, angle, Math.min(angle + .28, Math.PI * 2));
       context.strokeStyle = `rgba(232, 195, 140, ${index ? .17 : .35})`;
@@ -127,7 +118,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     });
     // Ripples spread from the point of light and fade into the dark surface.
     for (let i = 0; i < 16; i++) {
-      const travel = (i / 16 + phase * .018) % 1;
+      const travel = (i / 16 + phase * .024) % 1;
       const y = centerY + 9 + travel * height * .26;
       const halfWidth = 4 + travel * radius * .65;
       const flicker = .65 + Math.sin(phase * 1.2 + i * 2) * .25;
@@ -160,8 +151,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     lastTime = 0;
     if (!paused && visible && !document.hidden) frame = requestAnimationFrame(animate);
   }
-  toggle.addEventListener('click', () => { paused = !paused; labelToggle(); schedule(); });
-  motionPreference.addEventListener('change', event => { paused = event.matches; labelToggle(); schedule(); });
+  motionPreference.addEventListener('change', event => { paused = event.matches; schedule(); });
   document.addEventListener('visibilitychange', schedule);
   if ('IntersectionObserver' in window) new IntersectionObserver(entries => { visible = entries[0].isIntersecting; schedule(); }).observe(hero);
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(hero);
@@ -172,7 +162,6 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     pointer = { x: ((event.clientX - bounds.left) / width - .5) * 12, y: ((event.clientY - bounds.top) / height - .5) * 8 };
   }, { passive: true });
   hero.addEventListener('pointerleave', () => { pointer = { x: 0, y: 0 }; });
-  labelToggle();
   resize();
   schedule();
 })();
