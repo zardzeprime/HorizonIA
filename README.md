@@ -16,7 +16,7 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 
 ## Abertura da nova era
 
-`onboarding.js` cria uma abertura original com planetas, luas e objetos vetoriais sendo atraídos por um buraco negro. Após cerca de 4,5 segundos, revela um convite para explorar o site. Inclui opção de pular, saída por Escape, foco controlado e respeito a movimento reduzido. O onboarding acontece em cada carregamento da página; nenhum cookie ou rastreamento é usado.
+`onboarding.js` cria uma abertura original com planetas, luas e objetos vetoriais sendo atraídos por um buraco negro. Após cerca de 4,5 segundos, revela um convite. O botão inicia uma segunda apresentação de cerca de 8,5 segundos, com duas mensagens e a marca surgindo das sombras, antes de liberar o site. A apresentação pode ser pulada e tem um botão para entrar assim que a marca surge. Inclui opção de pular, saída por Escape, foco controlado e respeito a movimento reduzido. O onboarding acontece em cada carregamento da página; nenhum cookie ou rastreamento é usado. No mobile, são renderizados 16 objetos (26 no desktop), filtros de desfoque são reduzidos e o Canvas do horizonte fica suspenso durante a abertura.
 
 ## Proposta
 
