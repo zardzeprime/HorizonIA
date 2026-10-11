@@ -16,7 +16,7 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 
 ## Contato
 
-O contato atual aponta para o Instagram de Esdras, `@zard.prime`. O formulário prepara um texto localmente; não envia ou armazena dados em um servidor. Substituir por WhatsApp comercial quando o número for fornecido. Nenhum projeto demonstrativo é apresentado como case real, e não há preços ou resultados inventados.
+Contato comercial: WhatsApp `(75) 98298-0702`, link internacional `https://wa.me/5575982980702`. O formulário prepara um briefing e abre o WhatsApp com o texto preenchido para o visitante revisar e enviar. O site não armazena os dados em servidor. O Instagram `@zard.prime` permanece no rodapé. Nenhum projeto demonstrativo é apresentado como case real, e não há preços ou resultados inventados.
 
 ## Publicação
 
