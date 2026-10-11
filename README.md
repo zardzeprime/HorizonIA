@@ -24,6 +24,12 @@ Criada por Esdras Oliveira e Oliveira Junior, a HorizonI transforma o acesso à 
 
 A foto do criador usa PNG transparente com moldura e iluminação animadas em CSS.
 
+## Planetas e contato animado
+
+`space-contact.js` desenha SVGs próprios de planetas no Canvas com movimento contínuo e colisão nas bordas. São 5 planetas no mobile e 8 no desktop, com renderização limitada a cerca de 30 fps, suspensão na abertura, no contato e em abas ocultas. O foguete original HorizonI avança em direção à tela antes de abrir uma janela de contato acessível, com abas WhatsApp e E-mail.
+
+`contact-config.js` contém os destinos públicos. O proprietário escolheu configurar o e-mail depois: a aba prepara/copia mensagens e oferece a continuação pelo WhatsApp; não finge enviar e-mails. Ao definir `email`, a aba fornece um link `mailto:` com mensagem pronta para o cliente revisar no aplicativo de e-mail. Não há servidor de envio ou coleta de dados.
+
 ## Contato
 
 Contato comercial: WhatsApp `(75) 98298-0702`, link internacional `https://wa.me/5575982980702`. O formulário prepara um briefing e abre o WhatsApp com o texto preenchido para o visitante revisar e enviar. O site não armazena os dados em servidor. O Instagram `@zard.prime` permanece no rodapé. Nenhum projeto demonstrativo é apresentado como case real, e não há preços ou resultados inventados.

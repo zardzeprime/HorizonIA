@@ -45,6 +45,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
   let paused = motionPreference.matches;
   let visible = true;
   let onboardingActive = false;
+  let contactActive = false;
   let frame = 0;
   let lastTime = 0;
   let phase = 0;
@@ -136,7 +137,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
   }
   function animate(time) {
     frame = 0;
-    if (paused || !visible || document.hidden || onboardingActive) { lastTime = 0; return; }
+    if (paused || !visible || document.hidden || onboardingActive || contactActive) { lastTime = 0; return; }
     if (!lastTime || time - lastTime >= 32) {
       phase += lastTime ? Math.min((time - lastTime) / 1000, .08) : .032;
       lastTime = time;
@@ -150,8 +151,10 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     lastTime = 0;
-    if (!paused && visible && !document.hidden && !onboardingActive) frame = requestAnimationFrame(animate);
+    if (!paused && visible && !document.hidden && !onboardingActive && !contactActive) frame = requestAnimationFrame(animate);
   }
+  document.addEventListener('horizoni:contact-start', () => { contactActive = true; schedule(); });
+  document.addEventListener('horizoni:contact-end', () => { contactActive = false; schedule(); });
   document.addEventListener('horizoni:onboarding-start', () => { onboardingActive = true; schedule(); });
   document.addEventListener('horizoni:onboarding-end', () => { onboardingActive = false; schedule(); });
   motionPreference.addEventListener('change', event => { paused = event.matches; schedule(); });
