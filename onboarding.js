@@ -5,18 +5,17 @@
   overlay.className = 'era-onboarding';
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
+  overlay.tabIndex = -1;
   overlay.setAttribute('aria-labelledby', 'era-title');
-  overlay.innerHTML = `<div class="era-space" aria-hidden="true"><div class="era-stars"></div><div class="era-hole"><div class="era-ring"></div><div class="era-core"></div></div><div class="era-objects"></div><div class="era-darkness"></div><div class="era-explosion"></div></div><button class="era-skip" type="button">Pular abertura ↗</button><div class="era-caption" role="status">IDEIAS. FERRAMENTAS. POSSIBILIDADES.<span>Tudo está entrando em uma nova era.</span></div><div class="era-dialog" hidden><p class="eyebrow">UM NOVO HORIZONTE COMEÇA AGORA</p><h2 id="era-title">Pronto para descobrir<br><span>a nova era?</span></h2><p>A inteligência artificial mudou a forma de criar.<br>O próximo passo é descobrir o que você pode construir com ela.</p><button class="button primary era-enter" type="button">Explorar meu próximo horizonte <span>↗</span></button><span class="era-dialog-note">CRIATIVIDADE HUMANA × INTELIGÊNCIA ARTIFICIAL</span></div>`;
-  overlay.innerHTML += `<div class="era-presentation" hidden><div class="presentation-aura" aria-hidden="true"></div><div class="presentation-orbit" aria-hidden="true"></div><div class="presentation-copy" aria-live="polite"><p class="presentation-line line-one">Uma ideia pode mudar<br><span>o seu próximo passo.</span></p><p class="presentation-line line-two" hidden>Quer aprender a criar com IA?<br><span>Ou quer que façam por você?</span></p></div><div class="presentation-brand" hidden><p class="eyebrow">APRESENTAMOS</p><div class="brand-reveal" aria-label="HorizonI"><span class="horizon-mark" aria-hidden="true"></span><span>horizon<span class="brand-i">I</span></span></div><p>Inteligência que transforma ideias.</p><span class="presentation-description">Direção humana. Criação com IA.<br>Um novo horizonte para o seu projeto.</span><button class="button primary era-finish" type="button">Conhecer a HorizonI <span>↗</span></button></div><span class="presentation-progress" aria-hidden="true"></span></div>`;
+  overlay.innerHTML = `<div class="era-space" aria-hidden="true"><div class="era-stars"></div><div class="era-hole"><div class="era-ring"></div><div class="era-core"></div></div><div class="era-objects"></div><div class="era-darkness"></div><div class="era-explosion"></div></div><div class="era-caption" role="status">IDEIAS. FERRAMENTAS. POSSIBILIDADES.<span>Tudo está entrando em uma nova era.</span></div><div class="era-dialog" hidden><p class="eyebrow">UM NOVO HORIZONTE COMEÇA AGORA</p><h2 id="era-title">Pronto para descobrir<br><span>a nova era?</span></h2><p>A inteligência artificial mudou a forma de criar.<br>O próximo passo é descobrir o que você pode construir com ela.</p><button class="button primary era-enter" type="button">Explorar meu próximo horizonte <span>↗</span></button><span class="era-dialog-note">CRIATIVIDADE HUMANA × INTELIGÊNCIA ARTIFICIAL</span></div>`;
+  overlay.innerHTML += `<div class="era-presentation" hidden><div class="presentation-aura" aria-hidden="true"></div><div class="presentation-orbit" aria-hidden="true"></div><div class="presentation-copy" aria-live="polite"><p class="presentation-line line-one">Uma ideia pode mudar<br><span>o seu próximo passo.</span></p><p class="presentation-line line-two" hidden>Quer aprender a criar com IA?<br><span>Ou quer que façam por você?</span></p></div><div class="presentation-brand" hidden><p class="eyebrow">APRESENTAMOS</p><div class="brand-reveal" aria-label="HorizonI"><span class="horizon-mark" aria-hidden="true"></span><span>horizon<span class="brand-i">I</span></span></div><p>Inteligência que transforma ideias.</p><span class="presentation-description">Direção humana. Criação com IA.<br>Um novo horizonte para o seu projeto.</span></div><span class="presentation-progress" aria-hidden="true"></span></div>`;
   document.body.append(overlay);
   document.dispatchEvent(new Event('horizoni:onboarding-start'));
   const previousFocus = document.activeElement;
-  const skip = overlay.querySelector('.era-skip');
   const dialog = overlay.querySelector('.era-dialog');
   const enter = overlay.querySelector('.era-enter');
   const presentation = overlay.querySelector('.era-presentation');
   const brand = overlay.querySelector('.presentation-brand');
-  const finish = overlay.querySelector('.era-finish');
   const content = Array.from(document.body.children).filter(node => node !== overlay && node.tagName !== 'SCRIPT');
   const originalInert = content.map(node => node.inert);
   content.forEach(node => { node.inert = true; });
@@ -61,7 +60,6 @@
     overlay.classList.add('era-ready');
     dialog.hidden = false;
     overlay.querySelector('.era-caption').hidden = true;
-    skip.hidden = true;
     enter.focus();
   }
   function close() {
@@ -88,35 +86,29 @@
     presenting = true;
     dialog.hidden = true;
     presentation.hidden = false;
-    skip.hidden = false;
-    skip.textContent = 'Pular apresentação ↗';
     overlay.setAttribute('aria-labelledby', 'presentation-title');
     brand.querySelector('.brand-reveal').id = 'presentation-title';
     overlay.classList.add('era-presenting');
-    skip.focus();
-    if (reduced.matches) { showBrand(); return; }
+    overlay.focus();
     presentationTimers.push(setTimeout(() => {
       overlay.querySelector('.line-one').hidden = true;
       overlay.querySelector('.line-two').hidden = false;
-    }, 1900));
-    presentationTimers.push(setTimeout(showBrand, 4100));
-    presentationTimers.push(setTimeout(() => { overlay.classList.add('era-leaving'); }, 7900));
-    presentationTimers.push(setTimeout(close, 8500));
+    }, 3800));
+    presentationTimers.push(setTimeout(showBrand, 8200));
+    presentationTimers.push(setTimeout(() => { overlay.classList.add('era-leaving'); }, 15000));
+    presentationTimers.push(setTimeout(close, 15600));
   }
   function onKey(event) {
-    if (event.key === 'Escape') { event.preventDefault(); close(); }
+    if (event.key === 'Escape') event.preventDefault();
     if (event.key === 'Tab') {
       event.preventDefault();
-      if (presenting && !brand.hidden) (document.activeElement === skip ? finish : skip).focus();
-      else (presenting || dialog.hidden ? skip : enter).focus();
+      (presenting || dialog.hidden ? overlay : enter).focus();
     }
   }
-  function onPreference(event) { if (!event.matches) return; if (presenting) { presentationTimers.forEach(clearTimeout); overlay.classList.remove('era-leaving'); showBrand(); } else reveal(); }
-  skip.addEventListener('click', () => { if (presenting) close(); else reveal(); });
+  function onPreference(event) { if (event.matches && !presenting) reveal(); }
   enter.addEventListener('click', beginPresentation);
-  finish.addEventListener('click', close);
   document.addEventListener('keydown', onKey);
   reduced.addEventListener('change', onPreference);
   if (reduced.matches) reveal();
-  else { skip.focus(); revealTimer = setTimeout(reveal, 4500); }
+  else { overlay.focus(); revealTimer = setTimeout(reveal, 4500); }
 })();

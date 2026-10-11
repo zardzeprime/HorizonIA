@@ -103,3 +103,6 @@ body:has(.era-onboarding) .hero-art *,body:has(.era-onboarding) .ticker>div,body
 @keyframes era-fade-to-site{to{opacity:0;transform:scale(1.025)}}
 @media(max-width:760px){.era-presentation{padding:75px 22px}.presentation-line{font-size:clamp(23px,6.5vw,34px);letter-spacing:-.6px}.brand-reveal{font-size:clamp(46px,12vw,70px);gap:13px;letter-spacing:-2.5px}.brand-reveal .horizon-mark{width:35px;height:22px}.brand-reveal .horizon-mark::before{top:9px}.presentation-brand .eyebrow{font-size:8px;letter-spacing:3px}.presentation-description{font-size:12px}.era-finish{min-height:48px}.era-dialog{backdrop-filter:none}.era-object{filter:none}.era-ring::before{filter:none}.era-dialog-note{line-height:1.8}}
 @media(prefers-reduced-motion:reduce){.presentation-line{opacity:1}.presentation-brand{animation:none!important}.presentation-progress{display:none}.era-leaving{animation:none!important}}
+
+/* Reading cadence: 3.8s introduction, 4.4s invitation, 6.8s brand reveal. */
+.presentation-line.line-one{animation-duration:3.8s}.presentation-line.line-two{animation-duration:4.4s}.presentation-progress::after{animation-duration:15.6s}
