@@ -106,3 +106,8 @@ body:has(.era-onboarding) .hero-art *,body:has(.era-onboarding) .ticker>div,body
 
 /* Reading cadence: 3.8s introduction, 4.4s invitation, 6.8s brand reveal. */
 .presentation-line.line-one{animation-duration:3.8s}.presentation-line.line-two{animation-duration:4.4s}.presentation-progress::after{animation-duration:15.6s}
+
+/* Final usability pass for touch screens and short landscape viewports. */
+.button{min-height:48px}.era-dialog{max-height:calc(100dvh - 40px);overflow-y:auto;overscroll-behavior:contain}.era-presentation{overflow-y:auto;overscroll-behavior:contain}.brief-result .text-link{min-height:44px}.footer-bottom a{padding:5px 0}
+@media(max-width:760px){.brief-form input,.brief-form select,.brief-form textarea{font-size:16px}.footer-bottom a{min-height:40px;display:inline-flex;align-items:center}.replay{min-height:40px;padding:8px}.lab-tabs button{min-height:48px}}
+@media(max-height:580px){.era-dialog{padding:24px}.era-dialog h2{font-size:30px}.era-dialog .eyebrow{margin-bottom:15px}.era-dialog>p:not(.eyebrow){margin:14px 0;font-size:12px}.era-dialog-note{margin-top:15px}.era-presentation{padding:25px 20px}.presentation-brand .eyebrow{margin-bottom:16px}.brand-reveal{font-size:48px;gap:14px}.presentation-brand>p:not(.eyebrow){margin-top:12px;font-size:14px}.presentation-description{margin-top:12px;font-size:11px}.presentation-progress{bottom:12px}.presentation-line{font-size:28px}}

@@ -26,7 +26,7 @@ document.querySelectorAll('[data-service]').forEach(link => link.addEventListene
 const form = document.querySelector('.brief-form');
 const status = document.querySelector('.form-status');
 const output = document.querySelector('#brief-output');
-form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity()) return; const name = document.querySelector('#name').value.trim(); const idea = document.querySelector('#idea').value.trim(); if (!name || !idea) { status.textContent = 'Preencha seu nome e conte um pouco da ideia.'; return; } output.value = `Olá, Esdras! Vim pelo site da HorizonI.\n\nNome: ${name}\nSolução: ${document.querySelector('#service').value}\n\nMinha ideia:\n${idea}\n\nVamos conversar sobre o projeto?`; document.querySelector('.brief-result').hidden = false; const whatsappUrl = `https://wa.me/5575982980702?text=${encodeURIComponent(output.value)}`; document.querySelector('#whatsapp-brief').href = whatsappUrl; const opened = window.open(whatsappUrl, '_blank', 'noopener,noreferrer'); status.textContent = 'Mensagem pronta. Revise no WhatsApp e toque em enviar. Se a conversa não abriu, use o link abaixo.'; });
+form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity()) return; const name = document.querySelector('#name').value.trim(); const idea = document.querySelector('#idea').value.trim(); if (!name || !idea) { status.textContent = 'Preencha seu nome e conte um pouco da ideia.'; return; } output.value = `Olá, Esdras! Vim pelo site da HorizonI.\n\nNome: ${name}\nSolução: ${document.querySelector('#service').value}\n\nMinha ideia:\n${idea}\n\nVamos conversar sobre o projeto?`; document.querySelector('.brief-result').hidden = false; const whatsappUrl = `https://wa.me/5575982980702?text=${encodeURIComponent(output.value)}`; document.querySelector('#whatsapp-brief').href = whatsappUrl; window.open(whatsappUrl, '_blank', 'noopener,noreferrer'); status.textContent = 'Mensagem pronta. Revise no WhatsApp e toque em enviar. Se a conversa não abriu, use o link abaixo.'; });
 document.querySelector('#copy-brief').addEventListener('click', async () => { try { if (!navigator.clipboard) throw new Error('Clipboard unavailable'); await navigator.clipboard.writeText(output.value); status.textContent = 'Briefing copiado! Agora é só colar na conversa.'; } catch { output.focus(); output.select(); status.textContent = 'Selecionei o briefing. Use a opção Copiar do seu dispositivo.'; } });
 document.querySelector('#year').textContent = String(new Date().getFullYear());
 
@@ -61,7 +61,7 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    particles = Array.from({ length: width < 760 ? 140 : 260 }, () => ({
+    particles = Array.from({ length: width <= 760 ? 140 : 260 }, () => ({
       angle: Math.random() * Math.PI * 2,
       radius: .35 + Math.random() * .75,
       size: .4 + Math.random() * 1.1,

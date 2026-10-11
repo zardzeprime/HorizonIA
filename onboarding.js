@@ -6,7 +6,7 @@
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
   overlay.tabIndex = -1;
-  overlay.setAttribute('aria-labelledby', 'era-title');
+  overlay.setAttribute('aria-label', 'HorizonI — uma nova era');
   overlay.innerHTML = `<div class="era-space" aria-hidden="true"><div class="era-stars"></div><div class="era-hole"><div class="era-ring"></div><div class="era-core"></div></div><div class="era-objects"></div><div class="era-darkness"></div><div class="era-explosion"></div></div><div class="era-caption" role="status">IDEIAS. FERRAMENTAS. POSSIBILIDADES.<span>Tudo está entrando em uma nova era.</span></div><div class="era-dialog" hidden><p class="eyebrow">UM NOVO HORIZONTE COMEÇA AGORA</p><h2 id="era-title">Pronto para descobrir<br><span>a nova era?</span></h2><p>A inteligência artificial mudou a forma de criar.<br>O próximo passo é descobrir o que você pode construir com ela.</p><button class="button primary era-enter" type="button">Explorar meu próximo horizonte <span>↗</span></button><span class="era-dialog-note">CRIATIVIDADE HUMANA × INTELIGÊNCIA ARTIFICIAL</span></div>`;
   overlay.innerHTML += `<div class="era-presentation" hidden><div class="presentation-aura" aria-hidden="true"></div><div class="presentation-orbit" aria-hidden="true"></div><div class="presentation-copy" aria-live="polite"><p class="presentation-line line-one">Uma ideia pode mudar<br><span>o seu próximo passo.</span></p><p class="presentation-line line-two" hidden>Quer aprender a criar com IA?<br><span>Ou quer que façam por você?</span></p></div><div class="presentation-brand" hidden><p class="eyebrow">APRESENTAMOS</p><div class="brand-reveal" aria-label="HorizonI"><span class="horizon-mark" aria-hidden="true"></span><span>horizon<span class="brand-i">I</span></span></div><p>Inteligência que transforma ideias.</p><span class="presentation-description">Direção humana. Criação com IA.<br>Um novo horizonte para o seu projeto.</span></div><span class="presentation-progress" aria-hidden="true"></span></div>`;
   document.body.append(overlay);
@@ -58,6 +58,8 @@
     if (finished || overlay.classList.contains('era-ready')) return;
     clearTimeout(revealTimer);
     overlay.classList.add('era-ready');
+    overlay.removeAttribute('aria-label');
+    overlay.setAttribute('aria-labelledby', 'era-title');
     dialog.hidden = false;
     overlay.querySelector('.era-caption').hidden = true;
     enter.focus();
@@ -86,7 +88,8 @@
     presenting = true;
     dialog.hidden = true;
     presentation.hidden = false;
-    overlay.setAttribute('aria-labelledby', 'presentation-title');
+    overlay.removeAttribute('aria-labelledby');
+    overlay.setAttribute('aria-label', 'Apresentação da HorizonI');
     brand.querySelector('.brand-reveal').id = 'presentation-title';
     overlay.classList.add('era-presenting');
     overlay.focus();
