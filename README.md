@@ -14,6 +14,10 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 - Perguntas frequentes e briefing local com opção de copiar.
 - Publicação pelo GitHub no Vercel, sem créditos de geração de plataformas.
 
+## Abertura da nova era
+
+`onboarding.js` cria uma abertura original com planetas, luas e objetos vetoriais sendo atraídos por um buraco negro. Após cerca de 4,5 segundos, revela um convite para explorar o site. Inclui opção de pular, saída por Escape, foco controlado e respeito a movimento reduzido. O onboarding acontece em cada carregamento da página; nenhum cookie ou rastreamento é usado.
+
 ## Proposta
 
 Criada por Esdras Oliveira e Oliveira Junior, a HorizonI transforma o acesso à IA em execução com estratégia, contexto, instruções claras, testes e revisão humana. Cria sites por código, corrige problemas em sites e WordPress, desenvolve criação digital e avalia plataformas web conforme escopo e viabilidade. Aplicativos mobile não integram a oferta definida.
