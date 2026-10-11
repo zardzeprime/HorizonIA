@@ -9,7 +9,7 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 ## Recursos
 
 - Layout responsivo, menu mobile, navegação por âncoras e foco visível.
-- Horizonte e reflexos feitos em CSS, entrada animada, revelação ao rolar e suporte a movimento reduzido.
+- Horizonte procedural em Canvas 2D com partículas orbitais, trilhas luminosas, reflexos em movimento e paralaxe sutil. Animações CSS nos ícones, gráficos e órbitas. Controle para pausar, suporte a movimento reduzido e renderização interrompida fora de tela ou em aba oculta.
 - Laboratório interativo com três demonstrações conceituais, sem chamadas a modelos de IA.
 - Perguntas frequentes e briefing local com opção de copiar.
 - Publicação pelo GitHub no Vercel, sem créditos de geração de plataformas.
