@@ -26,7 +26,7 @@ A foto do criador usa PNG transparente com moldura e iluminação animadas em CS
 
 ## Planetas e contato animado
 
-`space-contact.js` desenha SVGs próprios de planetas no Canvas com movimento contínuo e colisão nas bordas. São 5 planetas no mobile e 8 no desktop, com renderização limitada a cerca de 30 fps, suspensão na abertura, no contato e em abas ocultas. O foguete original HorizonI avança em direção à tela antes de abrir uma janela de contato acessível, com abas WhatsApp e E-mail.
+`space-contact.js` abre a janela de contato diretamente, sem planetas no fundo, Canvas adicional ou transição de foguete. Mantém foco, fechamento por Escape e abas WhatsApp/E-mail. A barra de rolagem usa preto e dourado com CSS nativo, sem interceptar o gesto de scroll.
 
 `contact-config.js` contém os destinos públicos. O proprietário escolheu configurar o e-mail depois: a aba fica desabilitada e sinalizada como “em breve”. Ao definir `email`, a aba fornece um link `mailto:` com mensagem pronta para o cliente revisar no aplicativo de e-mail. Não há servidor de envio ou coleta de dados.
 

@@ -52,7 +52,7 @@
   document.addEventListener('keydown', event => {
     if (active) { if (event.key === 'Escape') { event.preventDefault(); close(); } else if (event.key === 'Tab') { event.preventDefault(); closeButton.focus(); } return; }
     const shortcut = event.key === 'F12' || ((event.ctrlKey || event.metaKey) && event.shiftKey && ['i', 'j', 'c'].includes(event.key.toLowerCase()));
-    if (!shortcut || busy || used || document.querySelector('.contact-flight')) return;
+    if (!shortcut || busy || used) return;
     used = true; active = true; focusBefore = document.activeElement; overflowBefore = document.body.style.overflow;
     inertBefore = Array.from(document.body.children).filter(node => node !== overlay && node.tagName !== 'SCRIPT').map(node => [node, node.inert]);
     inertBefore.forEach(([node]) => { node.inert = true; });
