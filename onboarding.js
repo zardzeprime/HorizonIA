@@ -9,11 +9,13 @@
   overlay.setAttribute('aria-label', 'HorizonI — uma nova era');
   overlay.innerHTML = `<div class="era-space" aria-hidden="true"><div class="era-stars"></div><div class="era-hole"><div class="era-ring"></div><div class="era-core"></div></div><div class="era-objects"></div><div class="era-darkness"></div><div class="era-explosion"></div></div><div class="era-caption" role="status">IDEIAS. FERRAMENTAS. POSSIBILIDADES.<span>Tudo está entrando em uma nova era.</span></div><div class="era-dialog" hidden><p class="eyebrow">UM NOVO HORIZONTE COMEÇA AGORA</p><h2 id="era-title">Pronto para descobrir<br><span>a nova era?</span></h2><p>A inteligência artificial mudou a forma de criar.<br>O próximo passo é descobrir o que você pode construir com ela.</p><button class="button primary era-enter" type="button">Explorar meu próximo horizonte <span>↗</span></button><span class="era-dialog-note">CRIATIVIDADE HUMANA × INTELIGÊNCIA ARTIFICIAL</span></div>`;
   overlay.innerHTML += `<div class="era-presentation" hidden><div class="presentation-aura" aria-hidden="true"></div><div class="presentation-orbit" aria-hidden="true"></div><div class="presentation-copy" aria-live="polite"><p class="presentation-line line-one">Uma ideia pode mudar<br><span>o seu próximo passo.</span></p><p class="presentation-line line-two" hidden>Quer aprender a criar com IA?<br><span>Ou quer que façam por você?</span></p></div><div class="presentation-brand" hidden><p class="eyebrow">APRESENTAMOS</p><div class="brand-reveal" aria-label="HorizonI"><span class="horizon-mark" aria-hidden="true"></span><span>horizon<span class="brand-i">I</span></span></div><p>Inteligência que transforma ideias.</p><span class="presentation-description">Direção humana. Criação com IA.<br>Um novo horizonte para o seu projeto.</span></div><span class="presentation-progress" aria-hidden="true"></span></div>`;
+  overlay.innerHTML += `<button class="era-skip" type="button" aria-label="Pular abertura e ir para o site"><span>Pular intro</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></button>`;
   document.body.append(overlay);
   document.dispatchEvent(new Event('horizoni:onboarding-start'));
   const previousFocus = document.activeElement;
   const dialog = overlay.querySelector('.era-dialog');
   const enter = overlay.querySelector('.era-enter');
+  const skip = overlay.querySelector('.era-skip');
   const presentation = overlay.querySelector('.era-presentation');
   const brand = overlay.querySelector('.presentation-brand');
   const content = Array.from(document.body.children).filter(node => node !== overlay && node.tagName !== 'SCRIPT');
@@ -105,10 +107,14 @@
     if (event.key === 'Escape') event.preventDefault();
     if (event.key === 'Tab') {
       event.preventDefault();
-      (presenting || dialog.hidden ? overlay : enter).focus();
+      const choices = presenting || dialog.hidden ? [skip] : [enter, skip];
+      const current = choices.indexOf(document.activeElement);
+      const next = (current + (event.shiftKey ? -1 : 1) + choices.length) % choices.length;
+      choices[next].focus();
     }
   }
   function onPreference(event) { if (event.matches && !presenting) reveal(); }
+  skip.addEventListener('click', close);
   enter.addEventListener('click', beginPresentation);
   document.addEventListener('keydown', onKey);
   reduced.addEventListener('change', onPreference);

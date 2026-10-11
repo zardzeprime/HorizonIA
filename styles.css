@@ -171,3 +171,9 @@ body,.contact-overlay,textarea{scrollbar-color:#b38d5d #08090b;scrollbar-width:t
 ::-webkit-scrollbar-thumb:hover{background:#efd6ad}
 ::-webkit-scrollbar-corner{background:#08090b}
 @media(forced-colors:active){html,body,.contact-overlay,textarea{scrollbar-color:auto}}
+
+.era-skip{position:absolute;top:max(20px,env(safe-area-inset-top));right:max(20px,env(safe-area-inset-right));z-index:10;display:flex;align-items:center;gap:10px;min-height:44px;padding:9px 14px;border:1px solid #c8a37445;border-radius:24px;background:#08090bd9;color:#efd6ad;font:11px 'DM Sans',sans-serif;cursor:pointer;backdrop-filter:blur(8px)}
+.era-skip svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.era-skip:hover svg{transform:translateX(3px)}
+.era-skip:focus-visible{outline:2px solid #efd6ad;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.era-skip svg{transition:none}}

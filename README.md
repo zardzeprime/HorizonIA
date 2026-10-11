@@ -16,7 +16,7 @@ Sem instalação ou compilação. Sirva esta pasta com qualquer servidor estáti
 
 ## Abertura da nova era
 
-`onboarding.js` cria uma abertura original com planetas, luas e objetos vetoriais sendo atraídos por um buraco negro. Após cerca de 4,5 segundos, revela um convite. O botão inicia uma segunda apresentação de cerca de 15,6 segundos, com duas mensagens e a marca surgindo das sombras, antes de liberar o site. A abertura e a apresentação não oferecem atalhos de pular; o site é liberado automaticamente depois da sequência. Inclui foco controlado e respeito a movimento reduzido. O onboarding acontece em cada carregamento da página; nenhum cookie ou rastreamento é usado. No mobile, são renderizados 16 objetos (26 no desktop), filtros de desfoque são reduzidos e o Canvas do horizonte fica suspenso durante a abertura.
+`onboarding.js` cria uma abertura original com planetas, luas e objetos vetoriais sendo atraídos por um buraco negro. Após cerca de 4,5 segundos, revela um convite. O botão inicia uma segunda apresentação de cerca de 15,6 segundos, com duas mensagens e a marca surgindo das sombras, antes de liberar o site. Uma setinha “Pular intro” permite encerrar a abertura ou a apresentação a qualquer momento; o site também é liberado automaticamente depois da sequência. Inclui foco controlado e respeito a movimento reduzido. O onboarding acontece em cada carregamento da página; nenhum cookie ou rastreamento é usado. No mobile, são renderizados 16 objetos (26 no desktop), filtros de desfoque são reduzidos e o Canvas do horizonte fica suspenso durante a abertura.
 
 ## Proposta
 
@@ -43,3 +43,5 @@ Importe este repositório no Vercel com Framework Preset “Other”, sem build 
 Cards entram como cartas distribuídas, com carrossel manual em telas até 1000 px. Controles respondem ao scroll, teclado e redimensionamento. SVGs de setas são originais; o H orbital foi ampliado. Respeitamos prefers-reduced-motion.
 
 Os atalhos F12 e Ctrl/Cmd+Shift+I/J/C podem abrir uma cena humorística com sirene, viatura e policial. É um easter egg dispensável, não uma defesa: não bloqueia os atalhos, não detecta DevTools por outros caminhos, não criptografa nem impede a cópia dos arquivos públicos. Sem telemetria ou inferências por tamanho de janela.
+
+A patrulha pode reaparecer em cada atalho de inspeção recebido pela página, inclusive reiniciando sua animação enquanto aberta. O navegador pode reservar atalhos quando DevTools está com foco.

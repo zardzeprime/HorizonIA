@@ -35,7 +35,7 @@
   </section>`;
   document.body.append(overlay);
   const dialog = overlay.querySelector('.patrol-dialog'), closeButton = overlay.querySelector('.patrol-close');
-  let busy = false, active = false, focusBefore, overflowBefore, inertBefore = [], used = false;
+  let busy = false, active = false, focusBefore, overflowBefore, inertBefore = [];
   document.addEventListener('horizoni:onboarding-start', () => { busy = true; });
   document.addEventListener('horizoni:onboarding-end', () => { busy = false; });
   document.addEventListener('horizoni:contact-start', () => { busy = true; });
@@ -50,10 +50,11 @@
   closeButton.addEventListener('click', close);
   overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
   document.addEventListener('keydown', event => {
-    if (active) { if (event.key === 'Escape') { event.preventDefault(); close(); } else if (event.key === 'Tab') { event.preventDefault(); closeButton.focus(); } return; }
     const shortcut = event.key === 'F12' || ((event.ctrlKey || event.metaKey) && event.shiftKey && ['i', 'j', 'c'].includes(event.key.toLowerCase()));
-    if (!shortcut || busy || used) return;
-    used = true; active = true; focusBefore = document.activeElement; overflowBefore = document.body.style.overflow;
+    if (active && shortcut) { overlay.hidden = true; void overlay.offsetWidth; overlay.hidden = false; dialog.focus(); return; }
+    if (active) { if (event.key === 'Escape') { event.preventDefault(); close(); } else if (event.key === 'Tab') { event.preventDefault(); closeButton.focus(); } return; }
+    if (!shortcut || busy) return;
+    active = true; focusBefore = document.activeElement; overflowBefore = document.body.style.overflow;
     inertBefore = Array.from(document.body.children).filter(node => node !== overlay && node.tagName !== 'SCRIPT').map(node => [node, node.inert]);
     inertBefore.forEach(([node]) => { node.inert = true; });
     document.body.style.overflow = 'hidden'; overlay.hidden = false; dialog.focus();
